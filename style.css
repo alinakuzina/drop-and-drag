@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   background: url("./background.jpg");
+  backdrop-filter: blur(5px);
   background-size: cover;
   background-position: 50% 60%;
   background-attachment: fixed;
@@ -50,6 +51,7 @@ ul {
 
 /* Columns */
 .drag-column {
+  flex: 1;
   margin: 0 10px;
   position: relative;
   background-color: rgba(0, 0, 0, 0.4);
@@ -88,7 +90,7 @@ ul {
 /* Custom Scrollbar */
 .custom-scroll {
   overflow-y: auto;
-  max-height: 75vh;
+  max-height: 50vh;
 }
 
 .custom-scroll::-webkit-scrollbar-track {
@@ -185,8 +187,6 @@ ul {
 .plus-sign {
   font-size: 1.5rem;
   margin-right: 5px;
-  position: relative;
-  top: -3px;
 }
 
 .add-container {
