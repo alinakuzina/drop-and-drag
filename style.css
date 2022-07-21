@@ -123,7 +123,8 @@ ul {
 
 /* Drag and Drop */
 .over {
-  padding: 50px 10px;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 .drag-item-list {
