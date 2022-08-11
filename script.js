@@ -91,11 +91,29 @@ function updateDOM() {
     createItemEl(onHoldList, 0, onHoldItem, index);
   });
   // Run getSavedColumns only once, Update Local Storage
+  updatedOnLoad = true;
+  updateSavedColumns();
 }
 
 //Allows arrays to reflect Drag and Dpro items
 function rebuildArrays() {
-  console.log();
+  backlogListArray = [];
+  progressListArray = [];
+  completeListArray = [];
+  onHoldListArray = [];
+  for (let i = 0; i < backlogList.children.length; i++) {
+    backlogListArray.push(backlogList.children[i].textContent);
+  }
+  for (let i = 0; i < progressList.children.length; i++) {
+    progressListArray.push(progressList.children[i].textContent);
+  }
+  for (let i = 0; i < completeList.children.length; i++) {
+    completeListArray.push(completeList.children[i].textContent);
+  }
+  for (let i = 0; i < onHoldList.children.length; i++) {
+    onHoldListArray.push(onHoldList.children[i].textContent);
+  }
+  updateDOM();
 }
 
 //When Items start Dragging
@@ -104,9 +122,9 @@ function drag(e) {
   console.log("draggedItem", draggedItem);
 }
 
-function getDragAfterEl(column, y) {
-  console.log(column, y);
-}
+// function getDragAfterEl(column, y) {
+//   console.log(column, y);
+// }
 
 //Column Allows for Item to Drop
 function allowDrop(e, column) {
@@ -138,13 +156,13 @@ function drop(e) {
   //Remive BackgroundColor/padding
   listColumns.forEach((column) => column.classList.remove("over"));
   //Add item to Column
-  // const parent = listColumns[currentColumn];
-  console.log(afterEl);
+
   if (
     afterEl === backlogList ||
     afterEl === progressList ||
     afterEl === completeList ||
-    afterEl === onHoldList
+    afterEl === onHoldList ||
+    afterEl === 0
   ) {
     const parent = listColumns[currentColumn];
     parent.appendChild(draggedItem);
