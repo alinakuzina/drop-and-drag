@@ -93,6 +93,11 @@ function updateDOM() {
   // Run getSavedColumns only once, Update Local Storage
 }
 
+//Allows arrays to reflect Drag and Dpro items
+function rebuildArrays() {
+  console.log();
+}
+
 //When Items start Dragging
 function drag(e) {
   draggedItem = e.target;
@@ -112,7 +117,7 @@ function allowDrop(e, column) {
     completeListArray,
     onHoldListArray,
   ];
-  console.log(e, listArrays[column]);
+
   if (listArrays[column].length !== 0) {
     afterEl = e.path[0];
   } else {
@@ -134,12 +139,20 @@ function drop(e) {
   listColumns.forEach((column) => column.classList.remove("over"));
   //Add item to Column
   // const parent = listColumns[currentColumn];
-  if (afterEl !== 0) {
-    afterEl.after(draggedItem);
-  } else {
+  console.log(afterEl);
+  if (
+    afterEl === backlogList ||
+    afterEl === progressList ||
+    afterEl === completeList ||
+    afterEl === onHoldList
+  ) {
     const parent = listColumns[currentColumn];
     parent.appendChild(draggedItem);
+  } else {
+    afterEl.after(draggedItem);
   }
+
+  rebuildArrays();
 }
 
 //On load
