@@ -23,6 +23,7 @@ let listArrays = [];
 let draggedItem;
 let currentColumn;
 let afterEl;
+let dragging = false;
 
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
@@ -61,6 +62,9 @@ function createItemEl(columnEl, column, item, index) {
   listEl.textContent = item;
   listEl.draggable = true;
   listEl.setAttribute("ondragstart", "drag(event)");
+  listEl.contentEditable = true;
+  listEl.id = index;
+  listEl.setAttribute("onfocusout", `updateItem(${index},${column})`);
   columnEl.appendChild(listEl);
 }
 
@@ -78,21 +82,37 @@ function updateDOM() {
   // Progress Column
   progressList.textContent = "";
   progressListArray.forEach((progressItem, index) => {
-    createItemEl(progressList, 0, progressItem, index);
+    createItemEl(progressList, 1, progressItem, index);
   });
   // Complete Column
   completeList.textContent = "";
   completeListArray.forEach((completeItem, index) => {
-    createItemEl(completeList, 0, completeItem, index);
+    createItemEl(completeList, 2, completeItem, index);
   });
   // On Hold Column
   onHoldList.textContent = "";
   onHoldListArray.forEach((onHoldItem, index) => {
-    createItemEl(onHoldList, 0, onHoldItem, index);
+    createItemEl(onHoldList, 3, onHoldItem, index);
   });
   // Run getSavedColumns only once, Update Local Storage
   updatedOnLoad = true;
   updateSavedColumns();
+}
+
+//Update Item - Delete if nesessary or update Array value
+function updateItem(id, column) {
+  const selectedArray = listArrays[column];
+  const selectedColumnEl = listColumns[column].children;
+
+  if (!dragging) {
+    if (selectedColumnEl[id].textContent.length <= 0) {
+      selectedArray.splice(id, 1);
+    } else {
+      selectedArray[id] = selectedColumnEl[id].textContent;
+    }
+    console.log(selectedArray);
+    updateDOM();
+  }
 }
 
 //Allows arrays to reflect Drag and Dpro items
@@ -119,7 +139,7 @@ function rebuildArrays() {
 //When Items start Dragging
 function drag(e) {
   draggedItem = e.target;
-  console.log("draggedItem", draggedItem);
+  dragging = true;
 }
 
 //Column Allows for Item to Drop
@@ -165,7 +185,8 @@ function drop(e) {
   } else {
     afterEl.after(draggedItem);
   }
-
+  //Dragging complete
+  dragging = false;
   rebuildArrays();
 }
 
