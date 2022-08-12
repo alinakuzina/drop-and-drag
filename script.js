@@ -122,10 +122,6 @@ function drag(e) {
   console.log("draggedItem", draggedItem);
 }
 
-// function getDragAfterEl(column, y) {
-//   console.log(column, y);
-// }
-
 //Column Allows for Item to Drop
 function allowDrop(e, column) {
   e.preventDefault();
@@ -171,6 +167,35 @@ function drop(e) {
   }
 
   rebuildArrays();
+}
+
+//Add to column List,Reset Textbox
+
+function addToColumn(column) {
+  const itemText = addItems[column].textContent;
+  if (itemText.length > 0) {
+    const selectedArray = listArrays[column];
+    selectedArray.push(itemText);
+    updateDOM();
+  }
+
+  addItems[column].textContent = "";
+}
+
+//Show Add Item Input Box
+function showInputBox(column) {
+  addBtns[column].style.display = "none";
+  saveItemBtns[column].style.display = "flex";
+  addItemContainers[column].style.display = "flex";
+}
+
+//Hide Item Input Box
+function hideInputBox(column) {
+  addBtns[column].style.display = "flex";
+  saveItemBtns[column].style.display = "none";
+  addItemContainers[column].style.display = "none";
+
+  addToColumn(column);
 }
 
 //On load
