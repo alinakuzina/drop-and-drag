@@ -119,6 +119,29 @@ ul {
 
 .header h1 {
   font-size: 1.25rem;
+  color: white;
+}
+
+/* Delete icon */
+.icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.icon-edit,
+.icon-delete {
+  min-height: 17px;
+  min-width: 17px;
+  max-height: 17px;
+  max-width: 17px;
+  transition: all 0.3s;
+}
+
+.icon-edit:hover {
+  color: #1a8686;
+}
+.icon-delete:hover {
+  color: #a22d22;
 }
 
 /* Drag and Drop */
@@ -140,6 +163,9 @@ ul {
   line-height: 1.5rem;
   letter-spacing: 1px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .drag-item:focus {
@@ -200,7 +226,7 @@ ul {
 }
 
 .add-item {
-  width: 100%;
+  width: 90%;
   min-height: 100px;
   height: auto;
   background-color: white;
@@ -219,6 +245,27 @@ ul {
 @media screen and (max-width: 1800px) {
   .main-title {
     font-size: 2rem;
+  }
+}
+
+/*Media Tablet  */
+@media screen and (max-width: 860px) {
+  /* body {
+    overflow-y: auto;
+  } */
+
+  .drag-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .custom-scroll {
+    max-height: 19vh;
+  }
+
+  .drag-column {
+    max-height: 44vh;
   }
 }
 
