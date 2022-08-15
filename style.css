@@ -128,6 +128,7 @@ ul {
   grid-template-columns: 1fr 1fr;
   gap: 4px;
 }
+
 .icon-edit,
 .icon-delete {
   min-height: 17px;
@@ -137,11 +138,26 @@ ul {
   transition: all 0.3s;
 }
 
+.icon-submit {
+  min-height: 20px;
+  min-width: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  transition: all 0.3s;
+  color: #1a8686;
+}
+
+.icon-submit:hover {
+  transform: scale(1.4);
+}
+
 .icon-edit:hover {
   color: #1a8686;
+  transform: scale(1.4);
 }
 .icon-delete:hover {
   color: #a22d22;
+  transform: scale(1.4);
 }
 
 /* Drag and Drop */
