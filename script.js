@@ -8,6 +8,7 @@ const backlogList = document.getElementById("backlog-list");
 const progressList = document.getElementById("progress-list");
 const completeList = document.getElementById("complete-list");
 const onHoldList = document.getElementById("on-hold-list");
+const blocksList = document.querySelectorAll(".drag-column");
 
 // Items
 let updatedOnLoad = false;
@@ -24,6 +25,10 @@ let draggedItem;
 let currentColumn;
 let dragging = false;
 let editItem;
+
+//Touch Functionality
+let overColumnTouch;
+let touchedItem;
 
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
@@ -66,6 +71,14 @@ function createItemEl(columnEl, column, item, index) {
 </svg></div>`;
   listEl.draggable = true;
   listEl.setAttribute("ondragstart", "drag(event)");
+  listEl.setAttribute(
+    "ontouchmove",
+    `touchMoveHandler(event,${column},${index})`
+  );
+  listEl.setAttribute(
+    "ontouchend",
+    `touchEndHandler(event,${column},${index})`
+  );
   listEl.id = index;
   listEl.setAttribute("onfocusout", `updateItem(${index},${column})`);
   columnEl.appendChild(listEl);
@@ -167,7 +180,7 @@ function dragEnter(column) {
 //Dropping Item in Column
 function drop(e) {
   e.preventDefault();
-  //Remive BackgroundColor/padding
+  //Remove BackgroundColor/padding
   listColumns.forEach((column) => column.classList.remove("over"));
   //Add item to Column
 
@@ -236,6 +249,56 @@ function editItemHamndler(event) {
   ).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon-submit" onclick='updateItem(${icon},${column})' fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 </svg>`;
+}
+
+//Touch Move handler - instead drag on mobile
+function touchMoveHandler(e, column, index) {
+  e.preventDefault();
+  // console.log(event);
+  let currentEl = listColumns[column].children[index];
+  touchedItem = currentEl;
+
+  // console.log(listColumns[column].children[index]);
+
+  let touch = e.targetTouches[0];
+  currentEl.style.position = "absolute";
+  // console.log(currentEl);
+  currentEl.style.zIndex = "2000";
+  currentEl.style.top = `${
+    touch.pageY - blocksList[column].offsetTop - currentEl.offsetHeight / 2
+  }px`;
+  currentEl.style.left = `${
+    touch.pageX - blocksList[column].offsetLeft - currentEl.offsetWidth / 2
+  }px`;
+
+  listColumns.forEach((item, index) => {
+    if (
+      currentEl.getBoundingClientRect().right >
+        item.getBoundingClientRect().left &&
+      currentEl.getBoundingClientRect().top <
+        item.getBoundingClientRect().bottom &&
+      currentEl.getBoundingClientRect().bottom >
+        item.getBoundingClientRect().top &&
+      currentEl.getBoundingClientRect().left <
+        item.getBoundingClientRect().right
+    ) {
+      overColumnTouch = index;
+      item.classList.add("over");
+    } else {
+      item.classList.remove("over");
+    }
+  });
+}
+
+//event what happend when element end moving(due to touch )
+function touchEndHandler(event, column, index) {
+  console.log(overColumnTouch);
+  listColumns.forEach((column) => column.classList.remove("over"));
+  //Add item to Column
+  console.log(listColumns[overColumnTouch]);
+  listColumns[overColumnTouch].appendChild(touchedItem);
+  overColumnTouch = "";
+  rebuildArrays();
 }
 
 //On load
