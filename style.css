@@ -290,10 +290,6 @@ ul {
   .custom-scroll {
     max-height: 19vh;
   }
-
-  .drag-column {
-    max-height: 44vh;
-  }
 }
 
 /* Media Query: Large Smartphone (Vertical) */

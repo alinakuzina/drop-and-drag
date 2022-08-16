@@ -314,10 +314,9 @@ function touchMoveHandler(e, column, index) {
 
 //event what happend when element end moving(due to touch )
 function touchEndHandler(event, column, index) {
-  console.log(overColumnTouch);
   listColumns.forEach((column) => column.classList.remove("over"));
   //Add item to Column
-  console.log(listColumns[overColumnTouch]);
+
   listColumns[overColumnTouch].appendChild(touchedItem);
   overColumnTouch = "";
   rebuildArrays();
