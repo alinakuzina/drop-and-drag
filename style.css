@@ -15,13 +15,13 @@ html {
 body {
   margin: 0;
   background: url("./background.jpg");
-  backdrop-filter: blur(5px);
+
   background-size: cover;
   background-position: 50% 60%;
   background-attachment: fixed;
   color: white;
   font-family: Quicksand, sans-serif;
-  overflow-y: hidden;
+  position: static;
 }
 
 h1 {
@@ -286,25 +286,6 @@ ul {
 @media screen and (max-width: 1800px) {
   .main-title {
     font-size: 2rem;
-  }
-}
-
-/* midia for max height to avoid problems with additem block */
-@media screen and (max-height: 760px) {
-  body {
-    overflow-y: auto;
-  }
-
-  .drag-container {
-    margin: 0;
-  }
-
-  .drag-list {
-    display: block;
-  }
-
-  .drag-column {
-    margin: 10px;
   }
 }
 
