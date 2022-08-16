@@ -235,6 +235,8 @@ function showInputBox(column) {
   addBtns[column].style.display = "none";
   saveItemBtns[column].style.display = "flex";
   addItemContainers[column].style.display = "flex";
+  console.log(addItemContainers[column].offsetTop);
+  blocksList[column].scrollTo(0, addItemContainers[column].offsetTop);
 }
 
 //Hide Item Input Box
