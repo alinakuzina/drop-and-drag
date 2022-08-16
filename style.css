@@ -313,6 +313,7 @@ ul {
 @media screen and (max-width: 37.5em) {
   body {
     overflow-y: auto;
+    background: url("./background-min.jpg");
   }
 
   .drag-container {
