@@ -29,6 +29,7 @@ let editItem;
 //Touch Functionality
 let overColumnTouch;
 let touchedItem;
+let touchtart = false;
 
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
@@ -71,17 +72,38 @@ function createItemEl(columnEl, column, item, index) {
 </svg></div>`;
   listEl.draggable = true;
   listEl.setAttribute("ondragstart", "drag(event)");
-  listEl.setAttribute(
-    "ontouchmove",
-    `touchMoveHandler(event,${column},${index})`
-  );
-  listEl.setAttribute(
-    "ontouchend",
-    `touchEndHandler(event,${column},${index})`
-  );
   listEl.id = index;
   listEl.setAttribute("onfocusout", `updateItem(${index},${column})`);
   columnEl.appendChild(listEl);
+
+  //event listeners for touch functionality
+  listEl.addEventListener(
+    "touchstart",
+    (event) => {
+      if (!touchtart) {
+        touchtart = true;
+        setTimeout(() => {
+          if (touchtart) {
+            listEl.classList.add("active-touch");
+            document.body.style["overflow-y"] = "hidden";
+            listEl.addEventListener("touchmove", (event) => {
+              touchMoveHandler(event, column, index);
+            });
+          }
+        }, 200);
+      }
+    },
+    { passive: false }
+  );
+  listEl.addEventListener("touchend", (event) => {
+    touchtart = false;
+    document.body.style["overflow-y"] = "auto";
+    listEl.classList.remove("active-touch");
+    touchEndHandler(event, column, index);
+    listEl.removeEventListener("touchmove", (event) => {
+      touchMoveHandler(event, column, index);
+    });
+  });
 }
 
 // Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
@@ -303,3 +325,13 @@ function touchEndHandler(event, column, index) {
 
 //On load
 updateDOM();
+
+// listColumns.forEach((block) => {
+//   block.addEventListener(
+//     "touchmove",
+//     function (e) {
+//       console.log(e.target.closest(".drag-item"));
+//     },
+//     { passive: true }
+//   );
+// });

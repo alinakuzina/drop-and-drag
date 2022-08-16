@@ -185,6 +185,10 @@ ul {
   align-items: center;
 }
 
+.active-touch {
+  background-color: #1a8686;
+}
+
 .drag-item:focus {
   outline: none;
   background-color: white;
