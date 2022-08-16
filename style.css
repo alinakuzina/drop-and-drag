@@ -314,6 +314,12 @@ ul {
   body {
     overflow-y: auto;
     background: url("./background-min.jpg");
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: 50% 60%;
+    background-attachment: fixed;
   }
 
   .drag-container {
