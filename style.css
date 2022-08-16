@@ -3,6 +3,7 @@
 
 html {
   box-sizing: border-box;
+  font-size: 63.5%;
 }
 
 :root {
@@ -15,8 +16,10 @@ html {
 body {
   margin: 0;
   background: url("./background.jpg");
-
   background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-position: 50% 60%;
   background-attachment: fixed;
   color: white;
@@ -25,8 +28,8 @@ body {
 }
 
 h1 {
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 5px black;
+  letter-spacing: 0.2rem;
+  text-shadow: 0.2rem 0.2rem 0.5rem black;
 }
 
 .main-title {
@@ -41,7 +44,7 @@ ul {
 }
 
 .drag-container {
-  margin: 20px;
+  margin: 2rem;
 }
 
 .drag-list {
@@ -52,10 +55,10 @@ ul {
 /* Columns */
 .drag-column {
   flex: 1;
-  margin: 0 10px;
+  margin: 0 1rem;
   position: relative;
   background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
+  border-radius: 1rem;
   /* overflow-x: visible; */
   /* overflow-y: scroll; */
 }
@@ -95,27 +98,27 @@ ul {
 }
 
 .custom-scroll::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
+  box-shadow: inset 0 0 0.6rem rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.3);
-  margin-right: 5px;
+  margin-right: 0.5rem;
 }
 
 .custom-scroll::-webkit-scrollbar {
-  width: 10px;
+  width: 1rem;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  box-shadow: inset 0 0 0.6rem rgba(0, 0, 0, 0.3);
   background-color: rgba(0, 0, 0, 0.8);
 }
 
 .header {
   display: flex;
   justify-content: center;
-  border-radius: 10px;
-  margin: 10px;
+  border-radius: 1rem;
+  margin: 1rem;
 }
 
 .header h1 {
@@ -127,23 +130,23 @@ ul {
 .icons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px;
+  gap: 0.4px;
 }
 
 .icon-edit,
 .icon-delete {
-  min-height: 17px;
-  min-width: 17px;
-  max-height: 17px;
-  max-width: 17px;
+  min-height: 1.7rem;
+  min-width: 1.7rem;
+  max-height: 1.7rem;
+  max-width: 1.7rem;
   transition: all 0.3s;
 }
 
 .icon-submit {
-  min-height: 20px;
-  min-width: 20px;
-  max-height: 20px;
-  max-width: 20px;
+  min-height: 2rem;
+  min-width: 2rem;
+  max-height: 2rem;
+  max-width: 2rem;
   transition: all 0.3s;
   color: #1a8686;
 }
@@ -163,21 +166,21 @@ ul {
 
 /* Drag and Drop */
 .over {
-  padding-top: 10px;
-  padding-bottom: 30px;
+  padding-top: 1rem;
+  padding-bottom: 3px;
 }
 
 .drag-item-list {
-  min-height: 50px;
+  min-height: 5rem;
   transition: all 0.2s;
 }
 
 .drag-item {
-  margin: 10px;
-  padding: 10px;
+  margin: 1rem;
+  padding: 1rem;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
+  border-radius: 1rem;
   line-height: 1.5rem;
   letter-spacing: 1px;
   cursor: pointer;
@@ -196,8 +199,8 @@ ul {
   color: white;
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.438);
-  padding: 5px;
-  border-radius: 5px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .active-touch {
@@ -217,13 +220,13 @@ ul {
 }
 
 .add-btn {
-  margin: 10px;
-  padding: 5px 10px;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   cursor: pointer;
   width: fit-content;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   transition: all 0.3s ease-in;
   user-select: none;
 }
@@ -249,28 +252,28 @@ ul {
 
 .plus-sign {
   font-size: 1.5rem;
-  margin-right: 5px;
+  margin-right: 0.5rem;
 }
 
 .add-container {
-  margin: 10px;
-  padding: 5px 10px;
-  border-radius: 10px;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.9);
-  min-height: 20px;
+  min-height: 1rem;
   display: none;
 }
 
 .add-item {
   width: 90%;
-  min-height: 20px;
+  min-height: 1rem;
   height: auto;
   background-color: white;
-  border-radius: 10px;
-  margin: 5px auto;
+  border-radius: 1rem;
+  margin: 0.5rem auto;
   resize: none;
   color: black;
-  padding: 10px;
+  padding: 1rem;
 }
 
 .add-item:focus {
@@ -283,14 +286,14 @@ ul {
 }
 
 /* Media Query: Laptop */
-@media screen and (max-width: 1800px) {
+@media screen and (max-width: 112.5em) {
   .main-title {
     font-size: 2rem;
   }
 }
 
 /*Media Tablet  */
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 53.75em) {
   body {
     overflow-y: auto;
   }
@@ -298,7 +301,7 @@ ul {
   .drag-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 1rem;
   }
 
   .custom-scroll {
@@ -307,7 +310,7 @@ ul {
 }
 
 /* Media Query: Large Smartphone (Vertical) */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 37.5em) {
   body {
     overflow-y: auto;
   }
@@ -321,6 +324,6 @@ ul {
   }
 
   .drag-column {
-    margin: 10px;
+    margin: 1rem;
   }
 }
