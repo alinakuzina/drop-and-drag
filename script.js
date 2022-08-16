@@ -235,7 +235,7 @@ function showInputBox(column) {
   addBtns[column].style.display = "none";
   saveItemBtns[column].style.display = "flex";
   addItemContainers[column].style.display = "flex";
-  console.log(addItemContainers[column].offsetTop);
+  //Scroll to block to make it visible
   blocksList[column].scrollTo(0, addItemContainers[column].offsetTop);
 }
 
@@ -281,15 +281,10 @@ function editItemHamndler(event) {
 //Touch Move handler - instead drag on mobile
 function touchMoveHandler(e, column, index) {
   e.preventDefault();
-  // console.log(event);
   let currentEl = listColumns[column].children[index];
   touchedItem = currentEl;
-
-  // console.log(listColumns[column].children[index]);
-
   let touch = e.targetTouches[0];
   currentEl.style.position = "absolute";
-  // console.log(currentEl);
   currentEl.style.zIndex = "2000";
   currentEl.style.top = `${
     touch.pageY - blocksList[column].offsetTop - currentEl.offsetHeight / 2
@@ -330,13 +325,3 @@ function touchEndHandler(event, column, index) {
 
 //On load
 updateDOM();
-
-// listColumns.forEach((block) => {
-//   block.addEventListener(
-//     "touchmove",
-//     function (e) {
-//       console.log(e.target.closest(".drag-item"));
-//     },
-//     { passive: true }
-//   );
-// });

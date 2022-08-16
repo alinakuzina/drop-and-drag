@@ -56,8 +56,8 @@ ul {
   position: relative;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
-  overflow-x: visible;
-  overflow-y: scroll;
+  /* overflow-x: visible; */
+  /* overflow-y: scroll; */
 }
 
 .backlog-column .header,
@@ -298,6 +298,25 @@ ul {
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .drag-container {
+    margin: 0;
+  }
+
+  .drag-list {
+    display: block;
+  }
+
+  .drag-column {
+    margin: 10px;
+  }
+}
+
+/* midia for max height to avoid problems with additem block */
+@media screen and (max-height: 760px) {
   body {
     overflow-y: auto;
   }
