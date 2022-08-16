@@ -150,9 +150,8 @@ function updateItem(id, column) {
       selectedArray[id] = selectedColumnEl[id].textContent
         .replace(/\r?\n/g, "")
         .trim();
+      console.log(selectedArray[id]);
     }
-    console.log(selectedArray);
-
     updateDOM();
   }
 }
@@ -164,16 +163,24 @@ function rebuildArrays() {
   completeListArray = [];
   onHoldListArray = [];
   for (let i = 0; i < backlogList.children.length; i++) {
-    backlogListArray.push(backlogList.children[i].textContent);
+    backlogListArray.push(
+      backlogList.children[i].textContent.replace(/\r?\n/g, "").trim()
+    );
   }
   for (let i = 0; i < progressList.children.length; i++) {
-    progressListArray.push(progressList.children[i].textContent);
+    progressListArray.push(
+      progressList.children[i].textContent.replace(/\r?\n/g, "").trim()
+    );
   }
   for (let i = 0; i < completeList.children.length; i++) {
-    completeListArray.push(completeList.children[i].textContent);
+    completeListArray.push(
+      completeList.children[i].textContent.replace(/\r?\n/g, "").trim()
+    );
   }
   for (let i = 0; i < onHoldList.children.length; i++) {
-    onHoldListArray.push(onHoldList.children[i].textContent);
+    onHoldListArray.push(
+      onHoldList.children[i].textContent.replace(/\r?\n/g, "").trim()
+    );
   }
   updateDOM();
 }
@@ -267,8 +274,8 @@ function editItemHamndler(event) {
     .classList[1].split("");
   const column = classInLetters[classInLetters.length - 1];
   const icon = event.target.closest(".icon-edit").id;
-  editItem = event.target.closest(".drag-item");
-  console.log(editItem);
+  editItem = event.target.closest(".drag-item").children[0];
+  console.log(editItem.children[0]);
   editItem.contentEditable = true;
   editItem.focus();
   event.target.closest(
@@ -316,10 +323,11 @@ function touchMoveHandler(e, column, index) {
 function touchEndHandler(event, column, index) {
   listColumns.forEach((column) => column.classList.remove("over"));
   //Add item to Column
-
-  listColumns[overColumnTouch].appendChild(touchedItem);
-  overColumnTouch = "";
-  rebuildArrays();
+  if (listColumns[overColumnTouch]) {
+    listColumns[overColumnTouch].appendChild(touchedItem);
+    overColumnTouch = "";
+    rebuildArrays();
+  }
 }
 
 //On load
