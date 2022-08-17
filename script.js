@@ -241,16 +241,24 @@ function addToColumn(column) {
 
 //Show Add Item Input Box
 function showInputBox(column) {
-  addBtns[column].style.display = "none";
-  saveItemBtns[column].style.display = "flex";
-  addItemContainers[column].style.display = "flex";
+  // addBtns[column].style.display = "none";
+  // saveItemBtns[column].style.display = "flex";
+  // addItemContainers[column].style.display = "flex";
+
+  addBtns[column].classList.add("hide-smth");
+  saveItemBtns[column].classList.remove("hide-smth");
+  addItemContainers[column].classList.remove("hide-smth");
 }
 
 //Hide Item Input Box
 function hideInputBox(column) {
-  addBtns[column].style.display = "flex";
-  saveItemBtns[column].style.display = "none";
-  addItemContainers[column].style.display = "none";
+  // addBtns[column].style.display = "flex";
+  // saveItemBtns[column].style.display = "none";
+  // addItemContainers[column].style.display = "none";
+
+  addBtns[column].classList.remove("hide-smth");
+  saveItemBtns[column].classList.add("hide-smth");
+  addItemContainers[column].classList.add("hide-smth");
 
   addToColumn(column);
 }
