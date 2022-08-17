@@ -95,6 +95,7 @@ ul {
 .custom-scroll {
   overflow-y: auto;
   max-height: 50vh;
+  transition: all 0.5s;
 }
 
 .custom-scroll::-webkit-scrollbar-track {
@@ -140,6 +141,7 @@ ul {
   max-height: 1.7rem;
   max-width: 1.7rem;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .icon-submit {
@@ -149,6 +151,7 @@ ul {
   max-width: 2rem;
   transition: all 0.3s;
   color: #1a8686;
+  cursor: pointer;
 }
 
 .icon-submit:hover {
@@ -262,7 +265,6 @@ ul {
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.185);
   min-height: 1rem;
-  /* display: none; */
   display: flex;
   transition: all 0.5s;
 }
@@ -287,10 +289,9 @@ ul {
   opacity: 0;
   width: 0;
   height: 0;
-  /* transform: translateX(-1000%); */
   visibility: hidden;
   position: absolute;
-  left: -100%;
+  left: -400%;
 }
 
 .hide-smth:focus {
@@ -301,6 +302,23 @@ ul {
 [contenteditable] {
   -webkit-user-select: text;
   user-select: text;
+}
+
+.animate {
+  animation: 1s animation;
+}
+
+@keyframes animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(0.5);
+    background-color: #72170159;
+  }
 }
 
 /* Media Query: Laptop */

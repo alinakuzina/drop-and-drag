@@ -150,7 +150,6 @@ function updateItem(id, column) {
       selectedArray[id] = selectedColumnEl[id].textContent
         .replace(/\r?\n/g, "")
         .trim();
-      console.log(selectedArray[id]);
     }
     updateDOM();
   }
@@ -241,10 +240,6 @@ function addToColumn(column) {
 
 //Show Add Item Input Box
 function showInputBox(column) {
-  // addBtns[column].style.display = "none";
-  // saveItemBtns[column].style.display = "flex";
-  // addItemContainers[column].style.display = "flex";
-
   addBtns[column].classList.add("hide-smth");
   saveItemBtns[column].classList.remove("hide-smth");
   addItemContainers[column].classList.remove("hide-smth");
@@ -252,10 +247,6 @@ function showInputBox(column) {
 
 //Hide Item Input Box
 function hideInputBox(column) {
-  // addBtns[column].style.display = "flex";
-  // saveItemBtns[column].style.display = "none";
-  // addItemContainers[column].style.display = "none";
-
   addBtns[column].classList.remove("hide-smth");
   saveItemBtns[column].classList.add("hide-smth");
   addItemContainers[column].classList.add("hide-smth");
@@ -270,8 +261,11 @@ function deleteItemHamndler(e) {
     .classList[1].split("");
   const column = classInLetters[classInLetters.length - 1];
   const icon = e.target.closest(".icon-delete").id;
-  listArrays[column].splice(icon, 1);
-  updateDOM();
+  listColumns[column].children[icon].classList.add("animate");
+  setTimeout(() => {
+    listArrays[column].splice(icon, 1);
+    updateDOM();
+  }, 1000);
 }
 
 //edit item handler
@@ -283,7 +277,6 @@ function editItemHamndler(event) {
   const column = classInLetters[classInLetters.length - 1];
   const icon = event.target.closest(".icon-edit").id;
   editItem = event.target.closest(".drag-item").children[0];
-  console.log(editItem.children[0]);
   editItem.contentEditable = true;
   editItem.focus();
   event.target.closest(
