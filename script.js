@@ -189,6 +189,7 @@ function rebuildArrays() {
 function drag(e) {
   draggedItem = e.target;
   dragging = true;
+  draggedItem.classList.add("over");
 }
 
 //Column Allows for Item to Drop
@@ -221,6 +222,7 @@ function drop(e) {
 
   //Dragging complete
   dragging = false;
+  draggedItem.classList.remove("over");
   rebuildArrays();
 }
 
