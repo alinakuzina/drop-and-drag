@@ -75,6 +75,7 @@ function createItemEl(columnEl, column, item, index) {
   listEl.setAttribute("ondragstart", "drag(event)");
   listEl.id = index;
   listEl.setAttribute("onfocusout", `updateItem(${index},${column})`);
+  listEl.setAttribute("ondragend", "dragEnd(event)");
   columnEl.appendChild(listEl);
 
   //event listeners for touch functionality
@@ -223,6 +224,14 @@ function drop(e) {
   dragging = false;
   draggedItem.classList.remove("over");
   rebuildArrays();
+}
+
+//Dragleave if drob is to unvalid target
+
+function dragEnd(e) {
+  e.preventDefault();
+  listColumns.forEach((column) => column.classList.remove("over"));
+  draggedItem.classList.remove("over");
 }
 
 //Add to column List,Reset Textbox
