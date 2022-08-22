@@ -11,7 +11,7 @@ const onHoldList = document.getElementById("on-hold-list");
 const blocksList = document.querySelectorAll(".drag-column");
 
 // Items
-let updatedOnLoad = false;
+let isUpdatedOnLoad = false;
 
 // Initialize Arrays
 let backlogListArray = [];
@@ -23,7 +23,7 @@ let listArrays = [];
 // Drag Functionality
 let draggedItem;
 let currentColumn;
-let dragging = false;
+let isDragging = false;
 let editItem;
 
 //Touch Functionality
@@ -111,7 +111,7 @@ function createItemEl(columnEl, column, item, index) {
 // Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
 function updateDOM() {
   // Check localStorage once
-  if (!updatedOnLoad) {
+  if (!isUpdatedOnLoad) {
     getSavedColumns();
   }
   // Backlog Column
@@ -135,7 +135,7 @@ function updateDOM() {
     createItemEl(onHoldList, 3, onHoldItem, index);
   });
   // Run getSavedColumns only once, Update Local Storage
-  updatedOnLoad = true;
+  isUpdatedOnLoad = true;
   updateSavedColumns();
 }
 
@@ -144,7 +144,7 @@ function updateItem(id, column) {
   const selectedArray = listArrays[column];
   const selectedColumnEl = listColumns[column].children;
 
-  if (!dragging) {
+  if (!isDragging) {
     if (selectedColumnEl[id].textContent.length <= 0) {
       selectedArray.splice(id, 1);
     } else {
@@ -185,10 +185,10 @@ function rebuildArrays() {
   updateDOM();
 }
 
-//When Items start Dragging
+//When Items start isDragging
 function drag(e) {
   draggedItem = e.target;
-  dragging = true;
+  isDragging = true;
   draggedItem.classList.add("over");
 }
 
@@ -220,8 +220,8 @@ function drop(e) {
   const parent = listColumns[currentColumn];
   parent.appendChild(draggedItem);
 
-  //Dragging complete
-  dragging = false;
+  //isDragging complete
+  isDragging = false;
   draggedItem.classList.remove("over");
   rebuildArrays();
 }
